@@ -94,5 +94,26 @@ using (
   and exists (select 1 from public.admin_users where user_id = auth.uid())
 );
 
--- After creating an Auth user in Supabase, grant admin access with its user UUID:
--- insert into public.admin_users (user_id) values ('PASTE-AUTH-USER-UUID-HERE');
+-- After creating an Auth user in Supabase, grant admin access by email (no UUID copying):
+--   select public.add_admin_by_email('owner@example.com');
+create or replace function public.add_admin_by_email(p_email text)
+returns uuid
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user uuid;
+begin
+  select id into v_user from auth.users where lower(email) = lower(trim(p_email));
+  if v_user is null then
+    raise exception 'No Supabase Auth user found for %. Create the user in Authentication > Users first.', p_email;
+  end if;
+  insert into public.admin_users (user_id) values (v_user)
+  on conflict (user_id) do nothing;
+  return v_user;
+end;
+$$;
+
+revoke execute on function public.add_admin_by_email(text) from public, anon, authenticated;
+grant execute on function public.add_admin_by_email(text) to postgres, service_role;

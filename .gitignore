@@ -7,6 +7,17 @@ package-lock.json
 temp/
 .edge_temp_profile*
 
+# Vercel
+.vercel/
+
+# Supabase CLI
+supabase/.temp/
+
+# Secrets
+.env
+.env.*
+*.local
+
 # OS & Editor Files
 .DS_Store
 Thumbs.db
