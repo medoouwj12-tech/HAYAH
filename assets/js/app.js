@@ -17,7 +17,7 @@
   // Application State
   const state = {
     lang: localStorage.getItem('hayah_lang') || 'ar', // Default to Arabic as requested
-    theme: localStorage.getItem('hayah_theme') || 'dark', // Default to dark luxury theme
+    theme: localStorage.getItem('hayah_theme') || 'light', // Default to light luxury theme
     activeCategory: 'all',
     cart: JSON.parse(localStorage.getItem('hayah_cart') || '[]'),
     activeProductModal: null,

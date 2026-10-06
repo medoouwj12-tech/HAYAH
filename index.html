@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>HAYAH FLOWERS | Haute Floristry & Luxury Floral Couture</title>
   <meta name="description" content="HAYAH FLOWERS - دار تصميم الزهور الملكية وتنسيقات الورد الفاخرة في القاهرة. باقات ورد، بوكسات هدايا، زهور أعراس ومناسبات خاصة. اطلب الآن مباشرة عبر الواتساب.">
   <meta name="keywords" content="زهور, ورد, بوكيه, بوكسات ورد, زهور أعراس, هدايا فاخرة, القاهرة, مصر, Hayah Flowers, Luxury Flowers Cairo">
-  <meta name="theme-color" content="#0E0E10">
+  <meta name="theme-color" content="#FDFBF7">
 
   <!-- OpenGraph / Social Meta -->
   <meta property="og:title" content="HAYAH FLOWERS | Haute Floristry & Luxury Floral Couture">
@@ -31,7 +31,7 @@
   <!-- Ambient Golden Glows & Petals Canvas -->
   <div class="ambient-glow-1"></div>
   <div class="ambient-glow-2"></div>
-  <canvas id="petals-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1;"></canvas>
+  <canvas id="petals-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; max-width: 100vw; overflow: hidden;"></canvas>
 
   <!-- Top Announcement Bar -->
   <aside class="top-bar" role="banner">
@@ -45,7 +45,7 @@
       <a href="#home" class="brand-logo-wrap" aria-label="HAYAH FLOWERS Home">
         <img src="assets/images/logo.jpg" alt="HAYAH FLOWERS Logo" class="brand-logo-img">
         <div>
-          <span class="brand-name brand-serif">HAYAH FLOWERS</span>
+          <span class="brand-name brand-serif"><span class="brand-name-main">HAYAH</span> <span class="brand-name-sub">FLOWERS</span></span>
           <span class="brand-tagline" data-i18n="brandTagline">زهور فاخرة وتنسيقات ملكية</span>
         </div>
       </a>
