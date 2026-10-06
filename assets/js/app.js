@@ -700,7 +700,8 @@
   }
 
   // Initialize Global Listeners & Controls
-  function init() {
+  async function init() {
+    if (window.HAYAH_PRODUCTS_READY) await window.HAYAH_PRODUCTS_READY;
     // Apply initial state
     applyTheme(state.theme);
     applyLanguage(state.lang);

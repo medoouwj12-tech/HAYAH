@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FDFBF7">
+  <title>لوحة التحكم | HAYAH FLOWERS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-page">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="index.html"><span class="admin-brand-mark">H</span><span><b>HAYAH</b><small>FLOWERS ADMIN</small></span></a>
+      <div class="admin-side-label">القائمة الرئيسية</div>
+      <button class="side-link active" type="button"><span>▦</span> نظرة عامة</button>
+      <button class="side-link" type="button" id="sidebar-products"><span>❀</span> المنتجات</button>
+      <div class="sidebar-bottom">
+        <a class="side-link" href="index.html"><span>↗</span> عرض المتجر</a>
+        <button class="side-link hidden" type="button" id="signout-btn"><span>⇥</span> تسجيل الخروج</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div><div class="eyebrow">HAYAH FLOWERS / ADMIN</div><h1>لوحة التحكم</h1></div>
+        <div class="topbar-actions"><span id="connection-status" class="connection-pill"><i></i> جارٍ التحميل</span><button id="add-product-top" class="btn btn-gold">＋ إضافة منتج</button></div>
+      </header>
+
+      <section id="login-panel" class="login-panel hidden">
+        <div class="login-mark">H</div><h2>تسجيل دخول المسؤول</h2>
+        <p>سجّل الدخول بحساب Supabase المصرح له بإدارة المنتجات.</p>
+        <form id="login-form"><label>البريد الإلكتروني<input name="email" type="email" required autocomplete="username" placeholder="name@example.com"></label><label>كلمة المرور<input name="password" type="password" required autocomplete="current-password" placeholder="••••••••"></label><button class="btn btn-gold btn-full" type="submit">تسجيل الدخول</button></form>
+        <div id="login-message" class="form-message" aria-live="polite"></div>
+      </section>
+
+      <div id="dashboard-content">
+        <section class="stat-grid">
+          <article class="stat-card"><div class="stat-icon gold">❀</div><div><span>كل المنتجات</span><strong id="stat-total">0</strong></div><small>منتج في الكتالوج</small></article>
+          <article class="stat-card"><div class="stat-icon green">✓</div><div><span>معروضة بالمتجر</span><strong id="stat-active">0</strong></div><small>منتج منشور</small></article>
+          <article class="stat-card"><div class="stat-icon blue">◷</div><div><span>مسودات</span><strong id="stat-drafts">0</strong></div><small>غير ظاهرة للعملاء</small></article>
+          <article class="stat-card"><div class="stat-icon rose">₤</div><div><span>متوسط السعر</span><strong id="stat-average">0</strong></div><small>جنيه مصري</small></article>
+        </section>
+
+        <section class="catalog-panel" id="products-section">
+          <div class="panel-heading"><div><h2>كتالوج المنتجات</h2><p>أدر الصور والأسعار والتفاصيل بالعربي والإنجليزي.</p></div><button id="import-defaults" class="btn btn-outline-gold btn-sm">استيراد المنتجات الافتراضية</button></div>
+          <div class="catalog-toolbar"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="ابحث باسم المنتج أو رقمه..."></label><select id="category-filter" class="form-select"><option value="all">كل التصنيفات</option></select><select id="status-filter" class="form-select"><option value="all">كل الحالات</option><option value="active">منشور</option><option value="draft">مسودة</option></select></div>
+          <div class="table-scroll"><table class="products-table"><thead><tr><th>المنتج</th><th>التصنيف</th><th>السعر</th><th>الحالة</th><th>آخر تحديث</th><th>إجراءات</th></tr></thead><tbody id="products-table-body"></tbody></table></div>
+          <div id="empty-state" class="empty-state hidden"><div>❀</div><h3>لا توجد منتجات هنا بعد</h3><p>أضف منتجًا جديدًا أو استورد كتالوج HAYAH الحالي.</p><button class="btn btn-gold" type="button" id="add-product-empty">＋ إضافة أول منتج</button></div>
+        </section>
+        <footer class="admin-footer">إدارة كتالوج HAYAH FLOWERS <span>•</span> <a href="index.html">العودة إلى المتجر</a></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <section class="product-editor">
+      <header class="editor-header"><div><div class="eyebrow">PRODUCT EDITOR</div><h2 id="form-title">إضافة منتج جديد</h2></div><button class="icon-btn" id="close-editor" type="button" aria-label="إغلاق">×</button></header>
+      <form id="product-form">
+        <input type="hidden" name="id">
+        <div class="editor-body">
+          <div class="editor-section-title"><span>01</span> البيانات الأساسية</div>
+          <div class="editor-grid">
+            <label class="wide">رابط الصورة أو مسارها<input name="image" required placeholder="assets/images/bouquet-1.jpg أو https://..."></label>
+            <div class="image-upload-row wide"><label class="file-picker">اختيار صورة من الجهاز<input id="image-file" type="file" accept="image/*"></label><button id="upload-image" class="btn btn-outline-gold btn-sm" type="button" disabled>رفع إلى Supabase Storage</button><small id="upload-help">ارفع صورة بعد توصيل المشروع وتسجيل الدخول.</small></div>
+            <label>التصنيف<select name="category" required></select></label>
+            <label>حالة المنتج<select name="isActive"><option value="true">منشور بالمتجر</option><option value="false">مسودة مخفية</option></select></label>
+            <label>السعر الحالي (ج.م)<input name="price" type="number" min="0" step="0.01" required></label>
+            <label>السعر قبل الخصم (ج.م)<input name="originalPrice" type="number" min="0" step="0.01" required></label>
+            <label>التقييم<input name="rating" type="number" min="0" max="5" step="0.1" value="5"></label>
+            <label>عدد التقييمات<input name="reviewsCount" type="number" min="0" step="1" value="0"></label>
+          </div>
+          <div class="editor-section-title"><span>02</span> الاسم والشارة</div>
+          <div class="editor-grid bilingual">
+            <label>الاسم بالعربية<input name="nameAr" required></label><label>Name in English<input name="nameEn" required dir="ltr"></label>
+            <label>شارة بالعربية<input name="badgeAr" placeholder="الأكثر طلبًا"></label><label>Badge in English<input name="badgeEn" placeholder="Best Seller" dir="ltr"></label>
+          </div>
+          <div class="editor-section-title"><span>03</span> وصف المنتج</div>
+          <div class="editor-grid bilingual">
+            <label>الوصف بالعربية<textarea name="descriptionAr" rows="3"></textarea></label><label>Description in English<textarea name="descriptionEn" rows="3" dir="ltr"></textarea></label>
+            <label>مكونات الباقة بالعربية<textarea name="flowersAr" rows="2"></textarea></label><label>Flowers / materials in English<textarea name="flowersEn" rows="2" dir="ltr"></textarea></label>
+            <label>تعليمات العناية بالعربية<textarea name="careAr" rows="2"></textarea></label><label>Care instructions in English<textarea name="careEn" rows="2" dir="ltr"></textarea></label>
+          </div>
+          <div class="image-preview-wrap"><img id="image-preview" alt="معاينة صورة المنتج"><span id="image-preview-placeholder">تظهر معاينة الصورة هنا</span></div>
+          <label class="publish-toggle"><input name="isActiveCheck" type="checkbox" checked><span><b>إظهار المنتج في المتجر</b><small>إلغاء التحديد يحفظه كمسودة غير منشورة.</small></span></label>
+        </div>
+        <footer class="editor-footer"><button class="btn btn-outline-gold" id="cancel-editor" type="button">إلغاء</button><button class="btn btn-gold" type="submit" id="save-product-btn">حفظ المنتج</button></footer>
+      </form>
+    </section>
+  </div>
+  <div id="admin-toast" class="admin-toast" aria-live="polite"></div>
+
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

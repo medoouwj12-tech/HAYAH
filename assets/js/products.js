@@ -332,8 +332,52 @@ const CATEGORIES = [
 ];
 
 if (typeof window !== "undefined") {
+  const defaultProducts = PRODUCTS.map(product => ({ ...product }));
+  window.HAYAH_DEFAULT_PRODUCTS = defaultProducts;
+
+  try {
+    const savedProducts = JSON.parse(localStorage.getItem("hayah_products") || "null");
+    if (Array.isArray(savedProducts)) {
+      PRODUCTS.splice(0, PRODUCTS.length, ...savedProducts.filter(product => product && product.isActive !== false));
+    }
+  } catch (error) {
+    console.warn("Could not read the locally saved product catalog.", error);
+  }
+
   window.HAYAH_PRODUCTS = PRODUCTS;
   window.HAYAH_CATEGORIES = CATEGORIES;
+  window.HAYAH_PRODUCTS_READY = (async () => {
+    const config = window.HAYAH_SUPABASE_CONFIG;
+    if (!config?.url || !config?.anonKey) return PRODUCTS;
+
+    try {
+      const table = encodeURIComponent(config.table || "products");
+      const response = await fetch(`${config.url.replace(/\/$/, "")}/rest/v1/${table}?select=*&is_active=eq.true&order=created_at.desc`, {
+        headers: { apikey: config.anonKey, Authorization: `Bearer ${config.anonKey}` },
+        signal: AbortSignal.timeout(8000)
+      });
+      if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`);
+      const rows = await response.json();
+      const remoteProducts = rows.map(row => ({
+          id: row.id,
+          image: row.image,
+          category: row.category,
+          price: Number(row.price),
+          originalPrice: Number(row.original_price ?? row.price),
+          rating: Number(row.rating ?? 5),
+          reviewsCount: Number(row.reviews_count ?? 0),
+          badge: row.badge || { en: "New", ar: "جديد" },
+          name: row.name || { en: "", ar: "" },
+          description: row.description || { en: "", ar: "" },
+          flowers: row.flowers || { en: "", ar: "" },
+          care: row.care || { en: "", ar: "" }
+      }));
+      PRODUCTS.splice(0, PRODUCTS.length, ...remoteProducts);
+    } catch (error) {
+      console.warn("Using the built-in catalog because Supabase could not be reached.", error);
+    }
+    return PRODUCTS;
+  })();
 }
 
 if (typeof module !== "undefined" && module.exports) {

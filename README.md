@@ -89,6 +89,19 @@ python -m http.server 3000
 ```
 Open [http://localhost:3000](http://localhost:3000).
 
+## 🛠️ Product Admin & Supabase Setup
+
+Open the dashboard at [http://localhost:3000/admin.html](http://localhost:3000/admin.html) after starting the local server. It supports adding, editing, searching, filtering, publishing, and deleting products, including Arabic and English names, descriptions, flower details, care instructions, prices, badges, ratings, and images.
+
+The dashboard works in **local mode** out of the box and saves changes in this browser. To share the catalog between devices using Supabase:
+
+1. Run `supabase/setup.sql` in your Supabase project's SQL Editor.
+2. Create an Auth user for the store administrator. In Supabase, copy that user's UUID and run the `insert into public.admin_users ...` statement at the end of the setup script.
+3. Add your Supabase project URL and publishable/anon key to `assets/js/supabase-config.js`. Never put the `service_role` key in browser code.
+4. Sign in at `/admin.html`. Use the **Import default products** button once to copy the current 11 products into Supabase. Product images can be uploaded to the configured `product-images` bucket from the editor.
+
+Row Level Security in the SQL setup allows public visitors to read published products and only users listed in `admin_users` to edit products or upload images. Keep Supabase Auth sign-up disabled for a private admin account, or only grant access by explicitly adding the user's UUID to `admin_users`.
+
 ---
 
 ## 📂 Project Structure
