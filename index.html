@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAYAH FLOWERS | Haute Floristry & Luxury Floral Couture</title>
+  <meta name="description" content="HAYAH FLOWERS - دار تصميم الزهور الملكية وتنسيقات الورد الفاخرة في القاهرة. باقات ورد، بوكسات هدايا، زهور أعراس ومناسبات خاصة. اطلب الآن مباشرة عبر الواتساب.">
+  <meta name="keywords" content="زهور, ورد, بوكيه, بوكسات ورد, زهور أعراس, هدايا فاخرة, القاهرة, مصر, Hayah Flowers, Luxury Flowers Cairo">
+  <meta name="theme-color" content="#0E0E10">
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:title" content="HAYAH FLOWERS | Haute Floristry & Luxury Floral Couture">
+  <meta property="og:description" content="Elegance in Every Petal. Handcrafted floral arrangements for life's most memorable moments. Special offer: All arrangements at 150 EGP.">
+  <meta property="og:image" content="assets/images/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="apple-touch-icon" href="assets/images/logo.jpg">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Luxury Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Golden Glows & Petals Canvas -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+  <canvas id="petals-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1;"></canvas>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" role="banner">
+    <span data-i18n="topBarAnnouncement">✨ عرض خاص وحصري: جميع التنسيقات الفاخرة بسعر 150 ج.م فقط | توصيل فوري في القاهرة والجيزة</span>
+  </aside>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo-wrap" aria-label="HAYAH FLOWERS Home">
+        <img src="assets/images/logo.jpg" alt="HAYAH FLOWERS Logo" class="brand-logo-img">
+        <div>
+          <span class="brand-name brand-serif">HAYAH FLOWERS</span>
+          <span class="brand-tagline" data-i18n="brandTagline">زهور فاخرة وتنسيقات ملكية</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link active" data-i18n="navHome">الرئيسية</a></li>
+          <li><a href="#catalog" class="nav-link" data-i18n="navShop">التشكيلة الفاخرة</a></li>
+          <li><a href="#bespoke" class="nav-link" data-i18n="navCustom">صمم باقتك</a></li>
+          <li><a href="#events" class="nav-link" data-i18n="navEvents">حجز المناسبات والأعراس</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="navAbout">قصتنا</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="navContact">تواصل معنا</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions: Lang, Theme, Cart -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <button id="lang-toggle-btn" class="icon-btn lang-btn" aria-label="Switch Language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>English</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Dark/Light Mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <!-- Shopping Cart Trigger Button -->
+        <button id="open-cart-btn" class="icon-btn" aria-label="Shopping Bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-menu-btn" aria-label="Open Mobile Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <div class="luxury-badge">
+            <span>⚜️</span>
+            <span data-i18n="heroBadge">فخامة تليق بأرقى اللحظات</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span data-i18n="heroTitle">الأناقة في كل بتلة</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            تنسيقات زهور ملكية مصممة يدويًا بحب وإتقان لتخليد أثمن لحظاتكم. تجربة إهداء تفوق التوقعات بلمسات ذهبية عريقة.
+          </p>
+
+          <!-- Promotional Price Callout -->
+          <div class="hero-price-callout">
+            <span style="font-size: 1.5rem;">👑</span>
+            <span data-i18n="heroPriceCallout">عرض محدود: جميع التنسيقات المعروضة الآن بسعر 150 جنيه فقط!</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#catalog" class="btn btn-gold" data-i18n="heroBtnShop">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              تصفح التشكيلة الفاخرة
+            </a>
+            <a href="#bespoke" class="btn btn-outline-gold" data-i18n="heroBtnCustom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              صمم باقتك بنفسك
+            </a>
+            <a href="#events" class="btn btn-outline-gold" data-i18n="heroBtnEvents">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              زهور الأعراس والمناسبات
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="hero-visual">
+          <div class="hero-frame">
+            <img src="assets/images/bouquet-7.jpg" alt="Imperial Ruby Grand Hatbox - HAYAH Flowers" class="hero-img">
+          </div>
+          <!-- Floating Luxury Badge -->
+          <div class="hero-float-card">
+            <img src="assets/images/logo.jpg" alt="HAYAH" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold-primary);">
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--gold-primary);">HAYAH Signature</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Grand Gala Roses • 150 EGP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats & Guarantees Ribbon -->
+    <section class="stats-ribbon" aria-label="Brand Highlights">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-i18n="stat1Number">100%</div>
+          <div class="stat-label" data-i18n="stat1Label">زهور طبيعية نضرة</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-i18n="stat2Number">خلال ساعتين</div>
+          <div class="stat-label" data-i18n="stat2Label">توصيل سريع بالقاهرة والجيزة</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-i18n="stat3Number">150 ج.م</div>
+          <div class="stat-label" data-i18n="stat3Label">سعر موحد استثنائي</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-i18n="stat4Number">5.0 ★</div>
+          <div class="stat-label" data-i18n="stat4Label">تقييم نخبة عملائنا</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="catalog" class="section-wrapper">
+      <div class="section-header">
+        <div class="luxury-badge" style="margin: 0 auto 14px;">
+          <span>🌸</span>
+          <span>HAUTE COLLECTION</span>
+        </div>
+        <h2 class="section-title" data-i18n="catalogSectionTitle">المجموعة المختارة الفاخرة</h2>
+        <p class="section-subtitle" data-i18n="catalogSectionSubtitle">
+          كل بوكيه هو لوحة فنية ساحرة تنبض بالشذى والرقي وتأسر القلوب من النظرة الأولى.
+        </p>
+      </div>
+
+      <!-- Promo Banner -->
+      <div class="promo-banner">
+        <span data-i18n="catalogPromoBanner">
+          ✨ عرض خاص لجميع العملاء: كل المعروضات متوفرة حالياً بسعر 150 جنيه فقط (بدلاً من أسعار تصل إلى 490 ج.م)!
+        </span>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" role="tablist">
+        <button class="filter-btn active" data-category="all" data-i18n="filterAll">جميع التنسيقات</button>
+        <button class="filter-btn" data-category="luxury-boxes" data-i18n="filterBoxes">بوكسات فاخرة</button>
+        <button class="filter-btn" data-category="bridal" data-i18n="filterBridal">باقات العروس</button>
+        <button class="filter-btn" data-category="vases" data-i18n="filterVases">فازات الورد</button>
+        <button class="filter-btn" data-category="eternal-roses" data-i18n="filterEternal">ورد دائم ومميز</button>
+      </div>
+
+      <!-- Dynamic Product Cards Grid -->
+      <div id="products-grid" class="products-grid">
+        <!-- Rendered by JavaScript via products.js -->
+      </div>
+    </section>
+
+    <!-- Custom Flower Arrangement Builder Section -->
+    <section id="bespoke" class="section-wrapper">
+      <div class="section-header">
+        <div class="luxury-badge" style="margin: 0 auto 14px;">
+          <span>🎨</span>
+          <span>ATELIER PRIVÉ</span>
+        </div>
+        <h2 class="section-title" data-i18n="builderSectionTitle">استوديو التنسيق الخاص (صمم باقتك)</h2>
+        <p class="section-subtitle" data-i18n="builderSectionSubtitle">
+          ابتكر تحفتك الزهرية الخاصة خطوة بخطوة بكل دقة وفخامة تليق بذوقك الرفيع.
+        </p>
+      </div>
+
+      <div class="builder-card">
+        <div class="builder-grid">
+          <!-- Builder Controls Form -->
+          <div class="builder-controls">
+            <!-- Step 1: Flower Selection -->
+            <div class="builder-step">
+              <div class="step-header">
+                <h3 class="step-title" data-i18n="step1Title">1. اختر أنواع الزهور المفضلة</h3>
+                <p class="step-desc" data-i18n="step1Desc">حدد الزهور الأساسية التي ترغب في تضمينها داخل الباقة:</p>
+              </div>
+              <div class="choice-chips">
+                <div class="choice-chip flower-chip active" data-flower="roses" data-i18n="flowerRoses">ورد جوري أحمر ملكي مخملي</div>
+                <div class="choice-chip flower-chip" data-flower="lilies" data-i18n="flowerLilies">زنابق الليليوم البيضاء النقية</div>
+                <div class="choice-chip flower-chip" data-flower="orchids" data-i18n="flowerOrchids">أوركيد الفالينوبسيس الإمبراطوري</div>
+                <div class="choice-chip flower-chip" data-flower="tulips" data-i18n="flowerTulips">توليب هولندي درجات الباستيل</div>
+                <div class="choice-chip flower-chip" data-flower="peonies" data-i18n="flowerPeonies">بيوني زهري مفعم بالأنوثة</div>
+                <div class="choice-chip flower-chip" data-flower="gypsophila" data-i18n="flowerGypsophila">بيبي بريث (جيبسوفيلا) سحابي ناعم</div>
+              </div>
+            </div>
+
+            <!-- Step 2: Wrapping Style -->
+            <div class="builder-step">
+              <div class="step-header">
+                <h3 class="step-title" data-i18n="step2Title">2. نمط ولون التغليف الملكي</h3>
+                <p class="step-desc" data-i18n="step2Desc">اختر أسلوب التغليف الذي يمنح باقتك الفخامة المطلقة:</p>
+              </div>
+              <div class="choice-chips">
+                <div class="choice-chip wrap-chip active" data-wrap="black" data-i18n="wrapBlack">أسود ملكي مطفي مع حواف مذهبة</div>
+                <div class="choice-chip wrap-chip" data-wrap="gold" data-i18n="wrapGold">ورق ميتاليك شمبانيا ذهبي عاكس</div>
+                <div class="choice-chip wrap-chip" data-wrap="white" data-i18n="wrapWhite">حرير أبيض عاجي نقي مع فيونكة ستان</div>
+                <div class="choice-chip wrap-chip" data-wrap="pink" data-i18n="wrapPink">مخمل بودري هادئ شديد الرقة</div>
+                <div class="choice-chip wrap-chip" data-wrap="emerald" data-i18n="wrapEmerald">أخضر زمردي فاخر مع حبال ذهبية</div>
+              </div>
+            </div>
+
+            <!-- Step 3: Greeting Card Details -->
+            <div class="builder-step">
+              <div class="step-header">
+                <h3 class="step-title" data-i18n="step3Title">3. كرت الإهداء الملكي المجاني</h3>
+                <p class="step-desc" data-i18n="step3Desc">أضف لمستك الوجدانية بكرت مختوم بختم الشمع الملكي:</p>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="form-group">
+                  <label class="form-label" data-i18n="cardRecipientName">اسم متلقي الهدية</label>
+                  <input type="text" id="builder-recipient" class="form-input" placeholder="مثال: سارة">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-i18n="cardSenderName">اسم الراسل</label>
+                  <input type="text" id="builder-sender" class="form-input" placeholder="اسمك أو اتركه سراً">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">نص رسالة الإهداء المكتوبة في الكرت</label>
+                <textarea id="builder-card-msg" class="form-textarea" data-i18n-placeholder="cardMessagePlaceholder" placeholder="اكتب مشاعرك الراقية هنا لتُخط على الكرت الفاخر..."></textarea>
+              </div>
+            </div>
+
+            <!-- Step 4: Delivery & Direct WhatsApp Action -->
+            <div class="builder-step">
+              <div class="step-header">
+                <h3 class="step-title" data-i18n="step4Title">4. بيانات التوصيل والإرسال الفوري للواتساب</h3>
+                <p class="step-desc" data-i18n="step4Desc">سنقوم بتجهيز باقتك وتسليمها بأعلى معايير الرقي في موعدك المحدد:</p>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="form-group">
+                  <label class="form-label" data-i18n="inputPhone">رقم الهاتف للتواصل (واتساب)</label>
+                  <input type="tel" id="builder-phone" class="form-input" placeholder="01XXXXXXXXX">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-i18n="inputAddress">عنوان التوصيل والمنطقة</label>
+                  <input type="text" id="builder-address" class="form-input" placeholder="مثل: الزمالك، التجمع، المعادي...">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="form-group">
+                  <label class="form-label" data-i18n="inputDate">تاريخ التوصيل المطلوب</label>
+                  <input type="date" id="builder-date" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-i18n="inputTime">الوقت المفضل للتسليم</label>
+                  <input type="time" id="builder-time" class="form-input">
+                </div>
+              </div>
+
+              <!-- Price & WhatsApp Submit Button -->
+              <div style="margin-top: 24px; padding: 20px; background: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--gold-primary); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="builderPriceLabel">السعر الحصري للتنسيق المخصص:</div>
+                  <div id="builder-display-price" style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--gold-primary);">150 ج.م</div>
+                </div>
+                <button type="button" id="builder-submit-btn" class="btn btn-whatsapp" data-i18n="btnSubmitBuilderWhatsApp">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  إرسال وتأكيد التصميم عبر الواتساب
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Greeting Card Live Preview -->
+          <div class="card-preview-container">
+            <h4 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 14px; font-weight: 600;" data-i18n="cardPreviewTitle">
+              معاينة كرت الإهداء المباشرة
+            </h4>
+            <div class="greeting-card-mockup">
+              <!-- Golden Filigree Corners -->
+              <span class="card-preview-gold-corner corner-tl"></span>
+              <span class="card-preview-gold-corner corner-tr"></span>
+              <span class="card-preview-gold-corner corner-bl"></span>
+              <span class="card-preview-gold-corner corner-br"></span>
+
+              <div id="preview-recipient" class="preview-card-recipient">إلى أغلى الناس</div>
+              <div id="preview-message" class="preview-card-message">
+                "كل عام وأنتِ أرق من الورد، دمتِ بهجة وسعادة لقلوبنا..."
+              </div>
+              <div class="preview-card-footer">
+                <span id="preview-sender" class="preview-card-sender">HAYAH LUXURY COLLECTION</span>
+                <div class="wax-seal">
+                  <span>HAYAH<br>SEAL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Artisan Note Box -->
+            <div style="margin-top: 20px; padding: 16px; border-radius: var(--radius-md); background: var(--bg-surface); border: 1px solid var(--border-color); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+              <div style="font-weight: 600; color: var(--gold-primary); margin-bottom: 4px;">⚜️ توقيع دار HAYAH:</div>
+              يتم إرفاق هذا الكرت الفاخر مجاناً مع كل طلبية، ويُطبع بأحرف ذهبية أنيقة ويُختم بالشمع الأحمر الملكي يدوياً.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP Event & Wedding Florals Section -->
+    <section id="events" class="section-wrapper">
+      <div class="section-header">
+        <div class="luxury-badge" style="margin: 0 auto 14px;">
+          <span>👑</span>
+          <span>ROYAL WEDDINGS & GALAS</span>
+        </div>
+        <h2 class="section-title" data-i18n="eventsSectionTitle">تنسيق زهور الأفراح والمناسبات الكبرى (VIP)</h2>
+        <p class="section-subtitle" data-i18n="eventsSectionSubtitle">
+          من حفلات الزفاف الأسطورية إلى الفعاليات الخاصة، مهندسو الزهور لدينا يحولون مناسبتكم إلى تحفة خيالية.
+        </p>
+      </div>
+
+      <div class="event-section-card">
+        <form id="event-booking-form">
+          <div class="event-form-grid">
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventTypeLabel">نوع المناسبة الفاخرة:</label>
+              <select id="event-type" class="form-select" required>
+                <option value="حفل زفاف ملكي كامل" data-i18n="eventWedding">حفل زفاف ملكي كامل (كوشة، قاعة، باقة)</option>
+                <option value="حفل خطوبة راقٍ" data-i18n="eventEngagement">حفل خطوبة راقٍ</option>
+                <option value="مؤتمر أو حفل تكريم شركات VIP" data-i18n="eventCorporate">مؤتمر أو حفل تكريم شركات VIP</option>
+                <option value="عشاء خاص / ذكرى سنوية رومانسية" data-i18n="eventPrivateDinner">عشاء خاص / ذكرى سنوية رومانسية</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventNameLabel">اسم صاحب الحجز / الجهة</label>
+              <input type="text" id="event-name" class="form-input" placeholder="الاسم الكريم" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventPhoneLabel">رقم الهاتف (الواتساب)</label>
+              <input type="tel" id="event-phone" class="form-input" placeholder="01XXXXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventDateLabel">تاريخ المناسبة</label>
+              <input type="date" id="event-date" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventVenueLabel">مكان الحفل (الفندق / القاعة / الفيلا)</label>
+              <input type="text" id="event-venue" class="form-input" placeholder="مثل: فندق الفورسيزونز، نايل ريتز كارلتون..." required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="eventGuestsLabel">العدد التقريبي للطاولات أو المدعوين</label>
+              <input type="text" id="event-guests" class="form-input" placeholder="مثل: 20 طاولة / 200 مدعو">
+            </div>
+
+            <div class="form-group grid-span-2">
+              <label class="form-label" data-i18n="eventNotesLabel">رؤيتكم للمناسبة وتفاصيل الألوان المطلوبة</label>
+              <textarea id="event-notes" class="form-textarea" data-i18n-placeholder="eventNotesPlaceholder" placeholder="اكتب تفاصيل الزهور، ألوان الثيم، أو أي طلبات خاصة تود منا تنفيذها..."></textarea>
+            </div>
+
+            <div class="grid-span-2" style="text-align: center; margin-top: 10px;">
+              <button type="submit" class="btn btn-whatsapp btn-full" style="max-width: 460px; margin: 0 auto;" data-i18n="btnSubmitEventWhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                إرسال طلب حجز المناسبة عبر الواتساب (+201141519896)
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section-wrapper">
+      <div class="about-grid">
+        <div class="about-image-stack">
+          <img src="assets/images/bouquet-3.jpg" alt="Artisanal Floral Craftsmanship" class="about-main-img">
+          <div class="about-sub-badge">
+            <div style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--gold-primary);">HAYAH</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Est. Cairo • Haute Floristry</div>
+          </div>
+        </div>
+
+        <div class="about-text-content">
+          <div class="luxury-badge" style="margin-bottom: 14px;">
+            <span>🌿</span>
+            <span>MAISON DE FLEURS</span>
+          </div>
+          <h2 class="section-title" data-i18n="aboutSectionTitle">جوهر علامة HAYAH</h2>
+          <p class="section-subtitle" style="margin-bottom: 18px;" data-i18n="aboutSectionSubtitle">
+            حيث تلتقي رقة الطبيعة بأرفع درجات الفخامة والأناقة الأبدية.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 16px; line-height: 1.8;" data-i18n="aboutParagraph1">
+            انطلقت علامة HAYAH FLOWERS من إيمان عميق بأن كل زهرة تختصر في بتلاتها قصة حب واعتزاز وامتنان. نحن لا نبيع زهوراً، بل نصنع ذكريات لا تُمحى.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.8;" data-i18n="aboutParagraph2">
+            يختار خبراؤنا أجود الزهور المستوردة من مزارع هولندا والإكوادور كل صباح، لتُنسق بمهارة يدوية مع بوكسات مطرزة، أشرطة حريرية مذهبة، وأختام شمعية تليق بأصحاب الذوق الرفيع.
+          </p>
+
+          <div class="about-feature-cards">
+            <div class="about-feature-item">
+              <div class="about-icon">🌸</div>
+              <div>
+                <h4 style="font-weight: 700; font-size: 0.98rem; margin-bottom: 2px;" data-i18n="aboutFeature1Title">زهور مستوردة نخب أول</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="aboutFeature1Desc">انتقاء يومي دقيق لأجود أنواع الورد الهولندي والإكوادوري لضمان أعلى نضارة.</p>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="about-icon">🎁</div>
+              <div>
+                <h4 style="font-weight: 700; font-size: 0.98rem; margin-bottom: 2px;" data-i18n="aboutFeature2Title">تغليف استثنائي فاخر</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="aboutFeature2Desc">بوكسات مخملية، لمسات ذهبية عاكسة، وأشرطة حريرية تحمل هوية العلامة.</p>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="about-icon">🚗</div>
+              <div>
+                <h4 style="font-weight: 700; font-size: 0.98rem; margin-bottom: 2px;" data-i18n="aboutFeature3Title">توصيل مميز في سيارات مجهزة</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="aboutFeature3Desc">نقل في بيئة مكيفة ومحمية لتصل الزهور في أبهى حالاتها كأنها قُطفت للتو.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer id="contact" class="site-footer">
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <img src="assets/images/logo.jpg" alt="HAYAH FLOWERS" style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--gold-primary);">
+          <span style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--gold-primary);">HAYAH FLOWERS</span>
+        </div>
+        <p style="font-size: 0.88rem; color: #A69E90; line-height: 1.7;" data-i18n="footerAbout">
+          HAYAH FLOWERS هي دار تصميم الزهور الفاخرة الأولى في القاهرة، مكرسة لإحياء أسمى اللحظات بلمسات راقية وتنسيقات ملكية استثنائية.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title" data-i18n="footerLinksTitle">روابط سريعة</h4>
+        <ul class="footer-links">
+          <li><a href="#home" data-i18n="navHome">الرئيسية</a></li>
+          <li><a href="#catalog" data-i18n="navShop">التشكيلة الفاخرة</a></li>
+          <li><a href="#bespoke" data-i18n="navCustom">صمم باقتك</a></li>
+          <li><a href="#events" data-i18n="navEvents">حجز المناسبات والأعراس</a></li>
+          <li><a href="#about" data-i18n="navAbout">قصتنا</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title" data-i18n="footerHoursTitle">ساعات العمل والمساعدة</h4>
+        <p style="font-size: 0.88rem; color: #A69E90; line-height: 1.8; white-space: pre-line;" data-i18n="footerHoursText">
+          يومياً: من 10:00 صباحاً حتى 11:00 مساءً
+          التوصيل متاح طوال أيام الأسبوع
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title" data-i18n="footerContactTitle">التواصل المباشر</h4>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <a href="https://wa.me/201141519896" target="_blank" rel="noopener" style="color: #25D366; text-decoration: none; font-weight: 600;" data-i18n="footerPhone">+201141519896</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="footerAddress">القاهرة والجيزة، مصر | التوصيل متاح لجميع المناطق</span>
+        </div>
+        <a href="https://wa.me/201141519896" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm" style="margin-top: 10px; width: 100%;">
+          محادثة واتساب سريعة
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div data-i18n="footerRights">© 2026 جميع الحقوق محفوظة لـ HAYAH FLOWERS. فن تصميم الزهور الملكية.</div>
+      <div style="color: var(--gold-primary); font-size: 0.8rem;">Haute Floristry • Cairo, Egypt</div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer -->
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping Bag Drawer">
+    <div class="cart-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.2rem;">🛍️</span>
+        <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;" data-i18n="cartTitle">حقيبة الزهور الفاخرة</h3>
+      </div>
+      <button id="close-cart-btn" class="icon-btn" aria-label="Close Bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Items list -->
+    <div id="cart-items-container" class="cart-items-list">
+      <!-- Dynamic cart items rendered here -->
+    </div>
+
+    <!-- Checkout Details in Drawer -->
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+        <span style="font-weight: 600; color: var(--text-muted);" data-i18n="cartSubtotal">المجموع الكلي:</span>
+        <span id="cart-subtotal-price" style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--gold-primary);">0 ج.م</span>
+      </div>
+      <div style="font-size: 0.78rem; color: var(--gold-metallic); margin-bottom: 14px;" data-i18n="cartDeliveryPromo">
+        يشمل التغليف الملكي وكرت الإهداء الفاخر مجاناً.
+      </div>
+
+      <!-- Quick Delivery Inputs inside Cart -->
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+        <input type="text" id="cart-cust-name" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" data-i18n-placeholder="cartNamePlaceholder" placeholder="الاسم بالكامل">
+        <input type="tel" id="cart-cust-phone" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" data-i18n-placeholder="cartPhonePlaceholder" placeholder="رقم الهاتف للتواصل">
+        <input type="text" id="cart-cust-address" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" data-i18n-placeholder="cartAddressPlaceholder" placeholder="عنوان التوصيل والمدينة">
+        <input type="text" id="cart-cust-date" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" data-i18n-placeholder="cartDatePlaceholder" placeholder="تاريخ ووقت التوصيل المفضل">
+        <input type="text" id="cart-cust-note" class="form-input" style="padding: 8px 12px; font-size: 0.85rem;" data-i18n-placeholder="cartCardNotePlaceholder" placeholder="نص كرت الإهداء (اختياري)">
+      </div>
+
+      <button id="cart-checkout-btn" class="btn btn-whatsapp btn-full" data-i18n="cartCheckoutBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        إتمام الطلب وتأكيده عبر الواتساب
+      </button>
+
+      <button id="clear-cart-btn" class="btn btn-outline-gold btn-sm btn-full" style="margin-top: 8px; border: none; font-size: 0.8rem;" data-i18n="cartClear">
+        إفراغ الحقيبة
+      </button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div id="quick-view-modal" class="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-grid">
+        <div class="modal-media">
+          <span id="modal-badge" class="card-badge" style="top: 18px; right: 18px; left: auto;">Signature</span>
+          <img id="modal-img" src="" alt="Bouquet Preview" class="modal-img">
+        </div>
+        <div class="modal-content">
+          <h3 id="modal-title" style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--text-main);">
+            Product Name
+          </h3>
+          <div style="display: flex; align-items: baseline; gap: 12px;">
+            <span id="modal-price" style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--gold-primary);">150 ج.م</span>
+            <span id="modal-original-price" style="font-size: 1rem; color: var(--text-light); text-decoration: line-through;">380 ج.م</span>
+            <span class="luxury-badge" style="padding: 2px 10px; font-size: 0.75rem;" data-i18n="specialPriceBadge">عرض خاص: 150 ج.م</span>
+          </div>
+
+          <p id="modal-desc" style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+            Description
+          </p>
+
+          <div style="background: var(--bg-input); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.85rem;">
+            <div style="font-weight: 600; color: var(--gold-primary); margin-bottom: 4px;" data-i18n="modalComposition">مكونات التنسيق الفاخر:</div>
+            <div id="modal-flowers" style="color: var(--text-main);">...</div>
+          </div>
+
+          <div style="background: var(--bg-input); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: 0.85rem;">
+            <div style="font-weight: 600; color: var(--gold-primary); margin-bottom: 4px;" data-i18n="modalCare">إرشادات الحفاظ على نضارة الزهور:</div>
+            <div id="modal-care" style="color: var(--text-muted);">...</div>
+          </div>
+
+          <!-- Custom Gift Note Field -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="font-size: 0.85rem;" data-i18n="modalCardNoteLabel">نص كرت الإهداء الفاخر (مجاناً):</label>
+            <input type="text" id="modal-card-note" class="form-input" data-i18n-placeholder="modalCardNotePlaceholder" placeholder="اكتب رسالة الإهداء الخاصة بك هنا...">
+          </div>
+
+          <!-- Quantity & Actions -->
+          <div style="display: flex; align-items: center; gap: 14px; margin-top: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-full); padding: 4px 12px;">
+              <span style="font-size: 0.82rem; color: var(--text-muted);" data-i18n="modalQuantity">الكمية:</span>
+              <button id="modal-qty-dec" class="qty-btn" aria-label="Decrease quantity">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <input id="modal-qty-input" type="text" value="1" readonly style="width: 24px; text-align: center; background: none; border: none; color: var(--text-main); font-weight: 700;">
+              <button id="modal-qty-inc" class="qty-btn" aria-label="Increase quantity">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <button id="modal-add-to-cart-btn" class="btn btn-gold btn-sm" data-i18n="btnAddToCart">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              أضف للحقيبة
+            </button>
+            <button id="modal-order-wa-btn" class="btn btn-whatsapp btn-sm" data-i18n="btnOrderWhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              اطلب عبر الواتساب
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Quick Action Concierge Button -->
+  <a href="https://wa.me/201141519896" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp Concierge" title="تواصل مباشرة عبر الواتساب مع منسق الزهور">
+    <div class="pulse-ring"></div>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

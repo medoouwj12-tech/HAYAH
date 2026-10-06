@@ -1,0 +1,20 @@
+{
+  "name": "hayah-flowers",
+  "version": "1.0.0",
+  "description": "HAYAH FLOWERS - Ultra-Luxurious E-Commerce Web Application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "flowers",
+    "luxury-ecommerce",
+    "whatsapp-ordering",
+    "egypt",
+    "bilingual"
+  ],
+  "author": "HAYAH FLOWERS",
+  "license": "MIT"
+}
