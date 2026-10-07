@@ -41,6 +41,7 @@ const TRANSLATIONS = {
     
     // Filters & Sorting
     filterAll: "All Arrangements",
+    filterBouquets: "HAYAH Bouquets",
     filterBoxes: "Luxury Boxes",
     filterBridal: "Bridal Bouquets",
     filterVases: "Flower Vases",
@@ -193,6 +194,7 @@ const TRANSLATIONS = {
 
     // Filters & Sorting
     filterAll: "جميع التنسيقات",
+    filterBouquets: "باقات حياة الجديدة",
     filterBoxes: "بوكسات فاخرة",
     filterBridal: "باقات العروس",
     filterVases: "فازات الورد",

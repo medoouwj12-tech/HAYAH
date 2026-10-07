@@ -33,7 +33,7 @@ An ultra-luxurious, dynamic, and fully responsive E-Commerce web platform built 
 * **Zero external image dependencies**: No placeholders or external CDNs used for flower photography.
 * **100% Local Project Assets**:
   - `assets/images/logo.jpg` - Official Brand Identity Logo.
-  - `assets/images/bouquet-1.jpg` to `bouquet-11.jpg` - High-resolution original bouquet catalog photography.
+  - `assets/images/catalog/bouquet-01.jpg` to `bouquet-67.jpg` - New white-background bouquet catalog photography.
 
 ---
 
@@ -98,7 +98,7 @@ The dashboard works in **local mode** out of the box and saves changes in this b
 1. Run `supabase/setup.sql` in your Supabase project's SQL Editor.
 2. Create an Auth user for the store administrator. In Supabase, copy that user's UUID and run the `insert into public.admin_users ...` statement at the end of the setup script.
 3. Add your Supabase project URL and publishable/anon key to `assets/js/supabase-config.js`. Never put the `service_role` key in browser code.
-4. Sign in at `/admin.html`. Use the **Import default products** button once to copy the current 11 products into Supabase. Product images can be uploaded to the configured `product-images` bucket from the editor.
+4. Sign in at `/admin.html`. Use the **Import default products** button once to import the 67-product white-background photo catalog into Supabase and replace the original product images. Product images can be uploaded to the configured `product-images` bucket from the editor.
 
 Row Level Security in the SQL setup allows public visitors to read published products and only users listed in `admin_users` to edit products or upload images. Keep Supabase Auth sign-up disabled for a private admin account, or only grant access by explicitly adding the user's UUID to `admin_users`.
 
@@ -114,12 +114,12 @@ d:\HAYAH\
 │   ├── css\
 │   │   └── style.css           # Luxury design system & styling
 │   ├── js\
-│   │   ├── products.js         # Curated 11-bouquet catalog dataset (150 EGP)
+│   │   ├── products.js         # Curated 67-bouquet catalog dataset
 │   │   ├── i18n.js             # Arabic & English translation dictionary
 │   │   └── app.js              # Application state, cart, WhatsApp generator & UI
 │   └── images\
 │       ├── logo.jpg            # Brand logo
-│       ├── bouquet-1.jpg       # Bouquet catalog photos 1 through 11
+│       ├── catalog\            # Bouquet catalog photos 01 through 67
 │       └── ...
 ```
 

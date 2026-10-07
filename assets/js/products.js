@@ -4,7 +4,7 @@
 const PRODUCTS = [
   {
     id: "hayah-01",
-    image: "assets/images/bouquet-1.jpg",
+    image: "assets/images/catalog/bouquet-01.jpg",
     category: "luxury-boxes",
     price: 150,
     originalPrice: 380,
@@ -33,7 +33,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-02",
-    image: "assets/images/bouquet-2.jpg",
+    image: "assets/images/catalog/bouquet-02.jpg",
     category: "bridal",
     price: 150,
     originalPrice: 420,
@@ -62,7 +62,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-03",
-    image: "assets/images/bouquet-3.jpg",
+    image: "assets/images/catalog/bouquet-03.jpg",
     category: "vases",
     price: 150,
     originalPrice: 390,
@@ -91,7 +91,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-04",
-    image: "assets/images/bouquet-4.jpg",
+    image: "assets/images/catalog/bouquet-04.jpg",
     category: "eternal-roses",
     price: 150,
     originalPrice: 460,
@@ -120,7 +120,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-05",
-    image: "assets/images/bouquet-5.jpg",
+    image: "assets/images/catalog/bouquet-05.jpg",
     category: "bridal",
     price: 150,
     originalPrice: 400,
@@ -149,7 +149,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-06",
-    image: "assets/images/bouquet-6.jpg",
+    image: "assets/images/catalog/bouquet-06.jpg",
     category: "vases",
     price: 150,
     originalPrice: 360,
@@ -178,7 +178,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-07",
-    image: "assets/images/bouquet-7.jpg",
+    image: "assets/images/catalog/bouquet-07.jpg",
     category: "luxury-boxes",
     price: 150,
     originalPrice: 490,
@@ -207,7 +207,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-08",
-    image: "assets/images/bouquet-8.jpg",
+    image: "assets/images/catalog/bouquet-08.jpg",
     category: "eternal-roses",
     price: 150,
     originalPrice: 340,
@@ -236,7 +236,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-09",
-    image: "assets/images/bouquet-9.jpg",
+    image: "assets/images/catalog/bouquet-09.jpg",
     category: "luxury-boxes",
     price: 150,
     originalPrice: 350,
@@ -265,7 +265,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-10",
-    image: "assets/images/bouquet-10.jpg",
+    image: "assets/images/catalog/bouquet-10.jpg",
     category: "bridal",
     price: 150,
     originalPrice: 390,
@@ -294,7 +294,7 @@ const PRODUCTS = [
   },
   {
     id: "hayah-11",
-    image: "assets/images/bouquet-11.jpg",
+    image: "assets/images/catalog/bouquet-11.jpg",
     category: "eternal-roses",
     price: 150,
     originalPrice: 450,
@@ -325,11 +325,37 @@ const PRODUCTS = [
 
 const CATEGORIES = [
   { id: "all", name: { en: "All Arrangements", ar: "جميع التنسيقات" } },
+  { id: "bouquets", name: { en: "HAYAH Bouquets", ar: "باقات حياة الجديدة" } },
   { id: "luxury-boxes", name: { en: "Luxury Boxes", ar: "بوكسات فاخرة" } },
   { id: "bridal", name: { en: "Bridal Bouquets", ar: "باقات العروس" } },
   { id: "vases", name: { en: "Flower Vases", ar: "فازات الورد" } },
   { id: "eternal-roses", name: { en: "Eternal Roses", ar: "ورد دائم ومميز" } }
 ];
+
+// The 67 newly supplied white-background bouquet photos replace the old catalog photography.
+for (let index = 0; index < Math.min(PRODUCTS.length, 67); index++) {
+  PRODUCTS[index].image = `assets/images/catalog/bouquet-${String(index + 1).padStart(2, "0")}.jpg`;
+}
+for (let number = PRODUCTS.length + 1; number <= 67; number++) {
+  const id = `hayah-${String(number).padStart(2, "0")}`;
+  PRODUCTS.push({
+    id,
+    image: `assets/images/catalog/bouquet-${String(number).padStart(2, "0")}.jpg`,
+    category: "bouquets",
+    price: 150,
+    originalPrice: 150,
+    rating: 5,
+    reviewsCount: 0,
+    badge: { en: "New Collection", ar: "من التشكيلة الجديدة" },
+    name: { en: `HAYAH Bouquet ${String(number).padStart(2, "0")}`, ar: `باقة حياة ${String(number).padStart(2, "0")}` },
+    description: {
+      en: "A fresh floral arrangement from the new HAYAH collection. Contact us to confirm today's flower availability.",
+      ar: "تنسيق زهور من تشكيلة حياة الجديدة. تواصل معنا لتأكيد توافر الزهور اليوم."
+    },
+    flowers: { en: "Seasonal flowers, arranged by HAYAH FLOWERS", ar: "زهور موسمية بتنسيق حياة فلاورز" },
+    care: { en: "Keep in a cool place and change the water daily.", ar: "يُحفظ في مكان بارد ويُغيّر الماء يوميًا." }
+  });
+}
 
 if (typeof window !== "undefined") {
   const defaultProducts = PRODUCTS.map(product => ({ ...product }));
@@ -338,7 +364,18 @@ if (typeof window !== "undefined") {
   try {
     const savedProducts = JSON.parse(localStorage.getItem("hayah_products") || "null");
     if (Array.isArray(savedProducts)) {
-      PRODUCTS.splice(0, PRODUCTS.length, ...savedProducts.filter(product => product && product.isActive !== false));
+      const catalogVersion = "white-bouquet-catalog-67-v1";
+      if (localStorage.getItem("hayah_catalog_version") === catalogVersion) {
+        PRODUCTS.splice(0, PRODUCTS.length, ...savedProducts.filter(product => product && product.isActive !== false));
+      } else {
+        const savedById = new Map(savedProducts.filter(product => product?.id).map(product => [product.id, product]));
+        const defaultIds = new Set(defaultProducts.map(product => product.id));
+        const migrated = defaultProducts.map(product => ({ ...product, ...(savedById.get(product.id) || {}), image: product.image }));
+        migrated.push(...savedProducts.filter(product => product?.id && !defaultIds.has(product.id)));
+        PRODUCTS.splice(0, PRODUCTS.length, ...migrated.filter(product => product.isActive !== false));
+        localStorage.setItem("hayah_products", JSON.stringify(migrated));
+        localStorage.setItem("hayah_catalog_version", catalogVersion);
+      }
     }
   } catch (error) {
     console.warn("Could not read the locally saved product catalog.", error);
@@ -358,9 +395,14 @@ if (typeof window !== "undefined") {
       });
       if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`);
       const rows = await response.json();
-      const remoteProducts = rows.map(row => ({
+      const catalogIsSeeded = rows.some(row => row.id === "__hayah_photo_catalog_v1__");
+      const remoteRows = rows.filter(row => row.id !== "__hayah_photo_catalog_v1__");
+      const defaultById = new Map(defaultProducts.map(product => [product.id, product]));
+      const remoteProducts = remoteRows.map(row => {
+        const fallback = defaultById.get(row.id);
+        return ({
           id: row.id,
-          image: row.image,
+          image: fallback && /^assets\/images\/bouquet-\d+\.jpg$/i.test(row.image || "") ? fallback.image : (row.image || fallback?.image || ""),
           category: row.category,
           price: Number(row.price),
           originalPrice: Number(row.original_price ?? row.price),
@@ -371,7 +413,12 @@ if (typeof window !== "undefined") {
           description: row.description || { en: "", ar: "" },
           flowers: row.flowers || { en: "", ar: "" },
           care: row.care || { en: "", ar: "" }
-      }));
+        });
+      });
+      if (!catalogIsSeeded) {
+        const remoteIds = new Set(remoteProducts.map(product => product.id));
+        remoteProducts.push(...defaultProducts.filter(product => !remoteIds.has(product.id)));
+      }
       PRODUCTS.splice(0, PRODUCTS.length, ...remoteProducts);
     } catch (error) {
       console.warn("Using the built-in catalog because Supabase could not be reached.", error);

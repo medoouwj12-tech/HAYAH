@@ -6,6 +6,7 @@
   const baseUrl = (config.url || "").replace(/\/$/, "");
   const table = encodeURIComponent(config.table || "products");
   const defaultProducts = window.HAYAH_DEFAULT_PRODUCTS || [];
+  const catalogSeedId = "__hayah_photo_catalog_v1__";
   const categories = window.HAYAH_CATEGORIES || [];
   let products = [];
   let session = null;
@@ -126,7 +127,10 @@
 
   function updateStorefrontCatalog() {
     window.HAYAH_PRODUCTS.splice(0, window.HAYAH_PRODUCTS.length, ...products.map(({ isActive, updated_at, ...product }) => product));
-    localStorage.setItem("hayah_products", JSON.stringify(products));
+    if (!remote) {
+      localStorage.setItem("hayah_products", JSON.stringify(products));
+      localStorage.setItem("hayah_catalog_version", "white-bouquet-catalog-67-v1");
+    }
   }
 
   function categoryName(id) {
@@ -348,12 +352,27 @@
 
   async function importDefaults() {
     if (!defaultProducts.length) return notify("لم يتم العثور على المنتجات الافتراضية.", true);
-    const verb = remote ? "إضافة المنتجات الـ 11 الافتراضية إلى Supabase؟" : "استعادة المنتجات الـ 11 الافتراضية؟ سيتم استبدال القائمة المحلية.";
+    const verb = remote ? "استيراد كتالوج الباقات الجديد (67 صورة) إلى Supabase وتحديث المنتجات الافتراضية؟" : "استعادة كتالوج الباقات الجديد (67 صورة)؟ سيتم استبدال القائمة المحلية.";
     if (!confirm(verb)) return;
     try {
       const imported = defaultProducts.map(product => ({ ...product, isActive: true, updated_at: new Date().toISOString() }));
       if (remote) {
         const rows = imported.map(toRow);
+        rows.push(toRow({
+          id: catalogSeedId,
+          image: "",
+          category: "bouquets",
+          price: 0,
+          originalPrice: 0,
+          rating: 0,
+          reviewsCount: 0,
+          badge: { en: "Internal", ar: "داخلي" },
+          name: { en: "Catalog sync marker", ar: "علامة مزامنة الكتالوج" },
+          description: { en: "Internal catalog version marker.", ar: "علامة داخلية لمزامنة الكتالوج." },
+          flowers: { en: "", ar: "" },
+          care: { en: "", ar: "" },
+          isActive: true
+        }));
         await api(`${table}?on_conflict=id`, { method: "POST", body: JSON.stringify(rows), headers: { Prefer: "resolution=merge-duplicates,return=minimal" } });
         products = await loadRemoteProducts();
       } else {
@@ -369,7 +388,7 @@
 
   async function loadRemoteProducts() {
     const rows = await api(`${table}?select=*&order=created_at.desc`);
-    return rows.map(fromRow);
+    return rows.filter(row => row.id !== catalogSeedId).map(fromRow);
   }
 
   async function uploadProductImage() {
