@@ -80,11 +80,18 @@
       return api(path, options, true);
     }
     if (!response.ok) {
-      const detail = await response.text();
-      throw new Error(detail || `Supabase error ${response.status}`);
+      const detail = (await response.text()).trim();
+      let message = detail;
+      try {
+        const parsed = detail ? JSON.parse(detail) : null;
+        message = parsed?.message || parsed?.error_description || parsed?.details || detail;
+      } catch {
+        message = detail;
+      }
+      throw new Error(message || `Supabase error ${response.status}`);
     }
-    if (response.status === 204) return null;
-    return response.json();
+    const body = (await response.text()).trim();
+    return body ? JSON.parse(body) : null;
   }
 
   function toRow(product) {
